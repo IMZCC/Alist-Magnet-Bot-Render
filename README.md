@@ -29,7 +29,7 @@
 
 | 项目         | 内容 |
 |--------------|------|
-| **Docker Image** | `node8848/thunderxbot-for-render:latest` |
+| **Docker Image** | `mikehand888/jav-telegram-bot:latest` |
 | **Service Name** | 自定义，例如 `thunderxbot` |
 | **Region**       | 建议选择靠近你用户的区域，如 `Singapore` |
 
@@ -38,15 +38,24 @@
 ### 步骤 3：配置环境变量
 
 在 `Environment Variables` 一栏填入以下内容：
-
-| 环境变量名 | 示例值 | 说明 |
-|------------|--------|------|
-| `BOT_BASE_URL` | `http://127.0.0.1:5244/` | Alist 的主页地址需要/结尾 |
-| `BOT_SEARCH_URL` | `https://api.wwlww.org/v1/avcode/` | 用于搜索磁力链接的 API 地址 |
-| `BOT_USERNAME` | `alist用户名` | Alist 登录用户名 |
-| `BOT_PASSWORD` | `alist密码` | Alist 登录密码 |
-| `BOT_OFFLINE_DOWNLOAD_DIR` | `/thunderx` | Alist 设置的离线下载保存路径 |
-| `BOT_TELEGRAM_TOKEN` | `Telegram Bot 的 Token` | 在 @BotFather 创建 Bot 后获得 |
+## 环境变量
+  | 变量名       | 变量内容  |默认值|说明|
+  | ------------ | ------   |-----|---|
+  |TELEGRAM_TOKEN|你的机器人Token|
+  |ALIST_BASE_URL|`https://你的Alist地址`||不带/结尾|
+  |ALIST_TOKEN|你的AlistToken|
+  |ALIST_OFFLINE_DIRS|/你的下载目录||可以多个下载目录，用英文逗号分开|
+  |JAV_SEARCH_APIS|`https://api.wwlww.org/v1/avcode/`|
+  |ALLOWED_USER_IDS|你的tg id||多个ID,用英文逗号分开|
+  |CLEAN_INTERVAL_MINUTES|间隔多少分钟自动清理文件|60（分钟）|
+  |SIZE_THRESHOLD|自动清理小于多少M的文件|150（MB）|
+  |PREFERRED_KEYWORDS|-C,-C-,ch,字幕||关键词不区分大小写（如 -C 会匹配 -c 或 -C），如果不需要优先级关键词可留空。|
+  |CUSTOM_CATEGORIES|分类1:关键词1,关键词2;分类2:关键词3,关键词4||自定义分类，番号匹配完毕之后匹配自定义分类，可留空。|
+  |SYSTEM_FOLDERS|/system/folder1,/system/folder2||这些文件夹在清理过程中将被保护，不会被删除或修改|
+  |CLEAN_BATCH_SIZE||500|
+  |CLEAN_REQUEST_INTERVAL||0.2|
+  |MAX_CONCURRENT_REQUESTS||20|
+  |HTML_URL|内容为自定义静态网页的raw文件链接，不填静态网页为Hello world!|
 
 ✅ 填写完毕点击 `Deploy` 即可部署。
 
@@ -69,26 +78,9 @@ uptime,哪吒面板等工具增加监控任务也可以
 
 ## 🐳 Docker 通用部署方式
 
-群友 0721 提供了适用于任意 Docker 平台的镜像：
+群友 john Nate 提供了适用于任意 Docker 平台的镜像：
 
-```bash
-docker run -d --restart=unless-stopped \
-  -v /opt/thunderx_bot:/app \
-  --name="thunderxbot" \
-  node8848/thunderxbot:latest
-```
-
-运行容器后，编辑配置文件 `/opt/thunderx_bot/config.json`：
-
-```bash
-nano /opt/thunderx_bot/config.json
-```
-
-填入你的配置信息后，重启容器以生效：
-
-```bash
-docker restart thunderxbot
-```
+https://hub.docker.com/r/hide3110/jav-telegram-bot
 
 ---
 
@@ -109,6 +101,8 @@ docker restart thunderxbot
 - **misaka**：增强 `/clean` 指令，实现垃圾文件清理功能  
 - **0721**：用 Go 语言重写项目，并提供 Render 镜像与多平台 Docker 镜像支持
 - [**月**](https://github.com/yyyr-otz)：重新编译支持java
+- [**john Nate**](https://hub.docker.com/r/hide3110/jav-telegram-bot)：提供通用Docker部署镜像
+- [**Mike HanD**](https://github.com/Kaiser-Ryo/jav-telegram-bot)：编译了render镜像
 - [**eooce**](https://github.com/eooce)：提供 Auto-keep-online 项目，实现 Render 自动保活
 
 > 📌 本教程由本人整理，经作者同意整合发布，内容仅供参考，如有问题自行解决，各种AI或者群里问。
