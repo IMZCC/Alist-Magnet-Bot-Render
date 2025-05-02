@@ -101,6 +101,7 @@ https://hub.docker.com/r/hide3110/jav-telegram-bot
 - **misaka**：增强 `/clean` 指令，实现垃圾文件清理功能  
 - **0721**：用 Go 语言重写项目，并提供 Render 镜像与多平台 Docker 镜像支持
 - [**月**](https://github.com/yyyr-otz)：重新编译支持java
+- [**Lmentor**]：增加了初版脚本的很多功能。
 - [**john Nate**](https://hub.docker.com/r/hide3110/jav-telegram-bot)：提供通用Docker部署镜像
 - [**Mike HanD**](https://github.com/Kaiser-Ryo/jav-telegram-bot)：编译了render镜像
 - [**eooce**](https://github.com/eooce)：提供 Auto-keep-online 项目，实现 Render 自动保活
